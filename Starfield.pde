@@ -1,16 +1,22 @@
 //your code here
-NormalParticle m[] =;
-
+NormalParticle m[] = new NormalParticle[100];
 void setup()
 {
 	size(800,800);
-	//your code here
+	for(int i = 0;i<100;i++)
+	{
+		m[i] = new NormalParticle();
+	}
 }
 void draw()
 {
 	background(0);
-	m.move();
-	m.show();//your code here
+	for (int i=0;i<100;i++)
+	{
+		m[i].move();
+		m[i].show();
+	}
+	//your code here
 }
 class NormalParticle
 {
@@ -18,18 +24,18 @@ class NormalParticle
 	int myColor;
 	NormalParticle()
 	{
-		myX=(Math.random()*400);
- 		myY=(Math.random()*400);
- 		myColor=color(255);
+		myX=400;
+ 		myY=400;
+ 		myColor=color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
  		myAngle =Math.PI*2*Math.random() ;
- 		mySpeed =(Math.random()*5)-2;
+ 		mySpeed =2;//(Math.random()*5)-2; <-- When mySpeed is fixed, particles create a ring 
 	}
-	void move()
+	public void move()
 	{
 		myX = myX + Math.cos(myAngle)*mySpeed;
 		myY = myY + Math.sin(myAngle)*mySpeed;
 	}
-	void show()
+	public void show()
 	{
 		fill(myColor);
 		ellipse((float)myX,(float)myY,10,10);
@@ -39,13 +45,32 @@ class NormalParticle
 }
 interface Particle
 {
-	//your code here
+	public void show();
+	public void move();//your code here
 }
 class OddballParticle //uses an interface
 {
+	int myX,myY, myColor;
+	OddballParticle()
+	{
+		myX = (int)(Math.random()*255);
+		myY = (int)(Math.random()*255);
+		myColor=color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
+
+	}
+	public void move()
+	{
+		myX = myX + (Math.random()*5)-2;
+		myY = myY + ((Math.random()*5)-2;)
+	}
+	public void show()
+	{
+		fill(myColor);
+		rect(myX,myY, 50,50);
+	}
 	//your code here
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle //uses inheritance
 {
 	//your code here
 }
