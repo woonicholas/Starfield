@@ -1,5 +1,5 @@
 //your code here
-Particle m[] = new Particle[500];
+Particle m[] = new Particle[900];
 
 void setup()
 {
@@ -11,7 +11,7 @@ void setup()
 		
 		}
 		m[1] = new OddballParticle();
-		for(int j = 5;j < (m.length/2);j+=5)
+		for(int j = 5;j < (m.length);j+=5)
 		{
 			m[j] = new JumboParticle();
 		}
@@ -91,15 +91,16 @@ class OddballParticle implements Particle //uses an interface
 	int myX,myY, myColor;
 	OddballParticle()
 	{
-		myX = (int)(Math.random()*750);
-		myY =(int)(Math.random()*750);
+		myX = (int)(Math.random()*400)+200;
+		myY =(int)(Math.random()*400)+200;
 		myColor=color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
 
 	}
 	public void move()
 	{
-		myX = myX + (int)(Math.random()*5)-2;
-		myY = myY + (int)(Math.random()*5)-2;
+		myX = myX + (int)(Math.random()*9)-4;
+		myY = myY + (int)(Math.random()*9)-4;
+		myColor=color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
 	}
 	public void show()
 	{
@@ -109,6 +110,7 @@ class OddballParticle implements Particle //uses an interface
 	}
 	public void wrap()
 	{
+
 	}//your code here
 }
 class JumboParticle extends NormalParticle //uses inheritance
